@@ -4,30 +4,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
+
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
-@Table(name = "Estudiantes")
+@Table(name ="Curso")
+@JsonIgnoreProperties
+public class Curso {
 
-public class Student {
-
-    //se hizo primitivo
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     private String name;
 
-    public Student() {
+    public Curso() {
     }
 
-    public Student(Integer id,  String name) {
-        this.id = id;
+    public Curso(String name) {
         this.name = name;
     }
-
-    public Student(String name) {
-        this.name = name;
-    }
-
 
     public Integer getId() {
         return id;

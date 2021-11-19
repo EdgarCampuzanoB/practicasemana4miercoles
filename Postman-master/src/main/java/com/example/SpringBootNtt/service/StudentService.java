@@ -1,11 +1,13 @@
 package com.example.SpringBootNtt.service;
 
 import com.example.SpringBootNtt.entity.Student;
+import com.example.SpringBootNtt.entity.Teacher;
+import com.example.SpringBootNtt.entity.TeacherToField;
 import com.example.SpringBootNtt.repository.StudentRepository;
+import com.example.SpringBootNtt.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,6 +16,9 @@ public class StudentService {
 
     @Autowired
     StudentRepository StudentRepo;
+
+    @Autowired
+    TeacherRepository teacherRepository;
 
     public void AddStudent(Student student) {
 
@@ -25,9 +30,27 @@ public class StudentService {
         return null;
     }
 
-    public Student getStudent(String name) {
-        return null;
+
+    public List<Student> getStudents() {
+        return StudentRepo.getStudents();
     }
+
+    public List<Teacher> getTeacherByNameAndAge(String name, Integer edad) {
+        return teacherRepository.findTeacherByNameAndEdad(name, edad);
+    }
+
+    public List<TeacherToField> getTeacherByAge(Integer edad) {
+        return teacherRepository.findTeacherByNameAndEdadByJPQL3(edad);
+    }
+
+    public List<String> getTeacherByAge2(Integer edad) {
+        return teacherRepository.findTeacherByNameAndEdadByJPQL2(edad);
+    }
+
+    public List<Teacher> getTeacherByCourse(String name) {
+        return  teacherRepository.findTeacherCourseJoinByName(name);
+    }
+
 
 //    private List<Student> students = new ArrayList<>();
 //
